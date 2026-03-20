@@ -2,11 +2,14 @@
 <html>
 <head>
   <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Dashboard 📊</h2>
-<ul id="list"></ul>
+<div class="container">
+  <h1>📊 Dashboard</h1>
+  <ul id="list"></ul>
+</div>
 
 <script>
 fetch("http://127.0.0.1:5000/expenses")
@@ -14,7 +17,9 @@ fetch("http://127.0.0.1:5000/expenses")
 .then(data => {
   let list = document.getElementById("list");
   data.forEach(e => {
-    list.innerHTML += `<li>${e.group} - ₹${e.amount}</li>`;
+    let li = document.createElement("li");
+    li.innerText = `${e.group} - ₹${e.amount}`;
+    list.appendChild(li);
   });
 });
 </script>
