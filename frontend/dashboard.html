@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+
+<h2>Dashboard 📊</h2>
+<ul id="list"></ul>
+
+<script>
+fetch("http://127.0.0.1:5000/expenses")
+.then(res => res.json())
+.then(data => {
+  let list = document.getElementById("list");
+  data.forEach(e => {
+    list.innerHTML += `<li>${e.group} - ₹${e.amount}</li>`;
+  });
+});
+</script>
+
+</body>
+</html>
