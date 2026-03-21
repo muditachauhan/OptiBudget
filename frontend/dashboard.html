@@ -8,20 +8,49 @@
 
 <div class="container">
   <h1>📊 Dashboard</h1>
+
+  <h2 id="total">Total: ₹0</h2>
+
   <ul id="list"></ul>
 </div>
 
 <script>
-fetch("http://127.0.0.1:5000/expenses")
-.then(res => res.json())
-.then(data => {
-  let list = document.getElementById("list");
-  data.forEach(e => {
-    let li = document.createElement("li");
-    li.innerText = `${e.group} - ₹${e.amount}`;
-    list.appendChild(li);
+function loadData() {
+  fetch("http://127.0.0.1:5000/expenses")
+  .then(res => res.json())
+  .then(data => {
+    let list = document.getElementById("list");
+    let total = 0;
+
+    list.innerHTML = "";
+
+    data.forEach((e, index) => {
+      total += parseInt(e.amount);
+
+      let li = document.createElement("li");
+      li.innerHTML = `
+        ${e.group} - ₹${e.amount}
+        <button onclick="deleteExpense(${index})">❌</button>
+      `;
+      list.appendChild(li);
+    });
+
+    document.getElementById("total").innerText = "Total: ₹" + total;
   });
-});
+}
+
+function deleteExpense(index) {
+  fetch(`http://127.0.0.1:5000/delete/${index}`, {
+    method: "DELETE"
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.message);
+    loadData();
+  });
+}
+
+loadData();
 </script>
 
 </body>
