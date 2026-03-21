@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-# File path (safe way)
+# File path
 FILE = os.path.join(os.path.dirname(__file__), "../data/expenses.json")
 
 
@@ -25,20 +25,18 @@ def save_data(data):
         json.dump(data, f, indent=4)
 
 
-# Home route (IMPORTANT FIX)
+# Home route
 @app.route("/")
 def home():
     return "OptiBudget Backend Running 🚀"
 
 
-# Add expense (POST)
+# Add expense
 @app.route("/add", methods=["POST"])
 def add_expense():
     data = load_data()
-
     new_expense = request.json
 
-    # basic validation
     if not new_expense or "group" not in new_expense or "amount" not in new_expense:
         return jsonify({"error": "Invalid data"}), 400
 
@@ -53,6 +51,20 @@ def add_expense():
 def get_expenses():
     data = load_data()
     return jsonify(data)
+
+
+# ✅ Delete expense (FIXED POSITION)
+@app.route("/delete/<int:index>", methods=["DELETE"])
+def delete_expense(index):
+    data = load_data()
+
+    if index < 0 or index >= len(data):
+        return jsonify({"error": "Invalid index"}), 400
+
+    data.pop(index)
+    save_data(data)
+
+    return jsonify({"message": "Deleted successfully"})
 
 
 # Run server
