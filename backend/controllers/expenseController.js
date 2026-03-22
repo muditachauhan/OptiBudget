@@ -1,22 +1,33 @@
-const Expense = require("../models/Expense");
+const db = require("../database/db");
 
 // Add expense
-exports.addExpense = async (req, res) => {
+exports.addExpense = (req, res) => {
     const { userId, title, amount, category } = req.body;
 
-    const expense = new Expense({
-        userId,
-        title,
-        amount,
-        category
-    });
-
-    await expense.save();
-    res.json(expense);
+    db.run(
+        "INSERT INTO expenses (userId, title, amount, category, date) VALUES (?, ?, ?, ?, datetime('now'))",
+        [userId, title, amount, category],
+        function (err) {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
+            res.json({ message: "Expense added" });
+        }
+    );
 };
 
 // Get expenses
-exports.getExpenses = async (req, res) => {
-    const expenses = await Expense.find({ userId: req.params.userId });
-    res.json(expenses);
+exports.getExpenses = (req, res) => {
+    const { userId } = req.params;
+
+    db.all(
+        "SELECT * FROM expenses WHERE userId = ?",
+        [userId],
+        (err, rows) => {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
+            res.json(rows);
+        }
+    );
 };

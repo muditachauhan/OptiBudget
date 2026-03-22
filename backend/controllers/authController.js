@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const db = require("../database/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -8,29 +8,39 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = new User({
-        name,
-        email,
-        password: hashedPassword
-    });
-
-    await user.save();
-    res.json({ message: "User registered" });
+    db.run(
+        "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+        [name, email, hashedPassword],
+        function (err) {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
+            res.json({ message: "User registered" });
+        }
+    );
 };
 
 // Login
-exports.login = async (req, res) => {
+exports.login = (req, res) => {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    db.get(
+        "SELECT * FROM users WHERE email = ?",
+        [email],
+        async (err, user) => {
+            if (err || !user) {
+                return res.status(400).json({ msg: "User not found" });
+            }
 
-    if (!user) return res.status(400).json({ msg: "User not found" });
+            const isMatch = await bcrypt.compare(password, user.password);
 
-    const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ msg: "Wrong password" });
+            }
 
-    if (!isMatch) return res.status(400).json({ msg: "Wrong password" });
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-
-    res.json({ token });
+            res.json({ token });
+        }
+    );
 };
