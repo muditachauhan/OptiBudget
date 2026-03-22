@@ -3,55 +3,67 @@
 <head>
   <title>Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>📊 Dashboard</h1>
-
-  <h2 id="total">Total: ₹0</h2>
-
-  <ul id="list"></ul>
+<div class="nav">
+  <h2>💸 OptiBudget</h2>
+  <button onclick="logout()">Logout</button>
 </div>
 
-<script>
-function loadData() {
-  fetch("http://127.0.0.1:5000/expenses")
-  .then(res => res.json())
-  .then(data => {
-    let list = document.getElementById("list");
-    let total = 0;
+<!-- KPI CARDS -->
+<div class="grid">
 
-    list.innerHTML = "";
+  <div class="card-small">
+    <h3>Total Expense</h3>
+    <p id="total">₹0</p>
+  </div>
 
-    data.forEach((e, index) => {
-      total += parseInt(e.amount);
+  <div class="card-small">
+    <h3>Prediction</h3>
+    <p id="prediction">₹0</p>
+  </div>
 
-      let li = document.createElement("li");
-      li.innerHTML = `
-        ${e.group} - ₹${e.amount}
-        <button onclick="deleteExpense(${index})">❌</button>
-      `;
-      list.appendChild(li);
-    });
+  <div class="card-small">
+    <h3>Remaining Budget</h3>
+    <p id="remaining">₹0</p>
+  </div>
 
-    document.getElementById("total").innerText = "Total: ₹" + total;
-  });
-}
+</div>
 
-function deleteExpense(index) {
-  fetch(`http://127.0.0.1:5000/delete/${index}`, {
-    method: "DELETE"
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert(data.message);
-    loadData();
-  });
-}
+<!-- ADD EXPENSE -->
+<div class="card">
+  <h3>Add Expense</h3>
+  <input id="title" placeholder="Title">
+  <input id="amount" placeholder="Amount">
+  <button onclick="addExpense()">Add</button>
+</div>
 
-loadData();
-</script>
+<!-- CHARTS -->
+<div class="card">
+  <h3>Expense Distribution</h3>
+  <canvas id="pieChart"></canvas>
+</div>
 
+<div class="card">
+  <h3>Expense Trend</h3>
+  <canvas id="barChart"></canvas>
+</div>
+
+<!-- LIST -->
+<div class="card">
+  <h3>Your Expenses</h3>
+  <div id="list"></div>
+</div>
+
+<!-- ALERT -->
+<div class="card">
+  <h3>⚠ Alerts</h3>
+  <div id="alerts"></div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
