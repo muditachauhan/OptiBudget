@@ -1,9 +1,11 @@
 // backend/server.js
 
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+
+// Import DB (IMPORTANT)
+require("./database/db");
 
 const app = express();
 
@@ -18,12 +20,7 @@ const expenseRoutes = require("./routes/expenseRoutes");
 app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
-
-// Server
+// Start server
 app.listen(5000, () => {
-    console.log("Server running on port 5000");
+    console.log("🚀 Server running on port 5000");
 });
