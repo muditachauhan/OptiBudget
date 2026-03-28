@@ -1,99 +1,348 @@
+/* 🌸 GLOBAL */
 body {
   margin: 0;
-  font-family: 'Segoe UI';
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  color: #333;
 }
 
-/* NAVBAR */
-.nav {
+/* 🌈 LAYOUT */
+.container {
+  display: flex;
+}
+
+/* 💖 SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(180deg, #ff9a9e, #fad0c4);
+  padding: 20px;
+  color: white;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin: 12px 0;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.sidebar li:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateX(5px);
+}
+
+/* 💎 MAIN */
+.main {
+  flex: 1;
+  padding: 25px;
+}
+
+/* ✨ TOPBAR */
+.topbar {
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
-  background: rgba(0,0,0,0.3);
+  align-items: center;
+  margin-bottom: 25px;
+  background: rgba(255,255,255,0.5);
+  padding: 15px 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
 }
 
-/* CENTER */
-.center {
-  text-align: center;
-  margin-top: 120px;
+/* 💕 CARDS */
+.cards {
+  display: flex;
+  gap: 20px;
 }
 
-/* CARD DESIGN */
 .card {
-  background: white;
-  color: black;
+  flex: 1;
   padding: 20px;
-  margin: 20px auto;
-  width: 320px;
   border-radius: 15px;
-  box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
-  animation: fadeIn 0.8s ease;
+  text-align: center;
+  font-size: 18px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
-/* INPUT */
+.card:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+/* 🌸 DIFFERENT COLORS FOR CARDS */
+.card:nth-child(1){
+  background: linear-gradient(135deg, #ff9a9e, #fecfef);
+}
+
+.card:nth-child(2){
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+}
+
+.card:nth-child(3){
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+}
+
+/* 📊 CHARTS */
+.charts {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.chart-box {
+  width: 45%;
+  height: 300px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* 🧾 INPUTS */
 input {
-  width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: none;
+  width: 200px;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* BUTTON */
+/* 🎀 BUTTON */
 button {
-  width: 100%;
-  padding: 10px;
-  background: #6c5ce7;
-  color: white;
+  padding: 12px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #4834d4;
-}
-
-/* DASHBOARD GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 20px;
-}
-
-/* CARD SMALL */
-.card-small {
-  background: white;
-  color: black;
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  padding: 20px;
-}
-
-.card-small {
-  background: white;
-  color: black;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-  transition: transform 0.3s;
-}
-
-.card-small:hover {
   transform: scale(1.05);
+}
+
+/* 📄 LIST */
+#list p {
+  background: rgba(255,255,255,0.5);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px 0;
+  transition: 0.3s;
+}
+
+#list p:hover {
+  transform: translateX(5px);
+}
+
+/* 👤 PROFILE */
+#profile {
+  background: rgba(255,255,255,0.5);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+/* 🌄 BACKGROUND SLIDER */
+.bg-slider {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-slider img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.bg-slider img.active {
+  opacity: 1;
+}
+
+/* 🌸 CENTER BOX */
+.center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  background: rgba(255,255,255,0.2);
+  padding: 40px;
+  border-radius: 20px;
+
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  width: 300px;
+}
+
+.center-box h1 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.center-box p {
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* 💕 BUTTON GROUP */
+.btn-group button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-group button:hover {
+  transform: scale(1.05);
+}
+
+/* 💖 AUTH PAGES */
+.auth-body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🌸 CONTAINER */
+.auth-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ✨ BOX */
+.auth-box {
+  width: 350px;
+  padding: 40px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  text-align: center;
+
+  animation: fadeIn 1s ease;
+}
+
+/* 💕 TEXT */
+.auth-box h1 {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 🧾 INPUT */
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+/* 🎀 BUTTON */
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-box button:hover {
+  transform: scale(1.05);
+}
+
+/* 🔁 SWITCH TEXT */
+.switch {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.switch span {
+  color: #ff4b7d;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ✨ ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* 🍭 TOAST */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  background: #ff4b7d;
+  color: white;
+
+  padding: 12px 20px;
+  border-radius: 10px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }

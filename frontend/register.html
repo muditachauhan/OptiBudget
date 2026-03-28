@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Register</title>
+  <meta charset="UTF-8">
+  <title>Register - OptiBudget</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
 
-<div class="card">
-  <h2>Create Account</h2>
+<body class="auth-body">
 
-  <input id="name" placeholder="Name">
-  <input id="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
+<div class="auth-container">
 
-  <button onclick="register()">Register</button>
+  <div class="auth-box">
+
+    <h1>🌸 Create Account</h1>
+    <p class="subtitle">Start your budgeting journey today 💖</p>
+
+    <input id="name" placeholder="👤 Your Name">
+    <input id="email" placeholder="📧 Email">
+    <input id="password" type="password" placeholder="🔐 Password" onkeyup="checkPassword()">
+    <p id="strength"></p>
+    <input id="budget" placeholder="💰 Monthly Budget ₹">
+
+    <button onclick="register()">Register 🎉</button>
+
+    <p class="switch">
+      Already have account? <span onclick="goLogin()">Login 🔐</span>
+    </p>
+
+  </div>
+
 </div>
+<div id="toast"></div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
