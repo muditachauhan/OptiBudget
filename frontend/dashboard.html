@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
+  <title>OptiBudget Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<div class="nav">
-  <h2>💸 OptiBudget</h2>
-  <button onclick="logout()">Logout</button>
-</div>
+<div class="container">
 
-<!-- KPI CARDS -->
-<div class="grid">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>💰 OptiBudget</h2>
 
-  <div class="card-small">
-    <h3>Total Expense</h3>
-    <p id="total">₹0</p>
+    <ul>
+      <li onclick="showSection('dashboard')">🏠 Dashboard</li>
+      <li onclick="showSection('expenses')">💸 Expenses</li>
+      <li onclick="showSection('profile')">👤 Profile</li>
+      <li onclick="logout()">🚪 Logout</li>
+    </ul>
   </div>
 
-  <div class="card-small">
-    <h3>Prediction</h3>
-    <p id="prediction">₹0</p>
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOP NAV -->
+    <div class="topbar">
+      <h2 id="welcome"></h2>
+      <span>👤 User</span>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard" class="section">
+
+      <div class="cards">
+        <div class="card">Total Expense <br><span id="total">₹0</span></div>
+        <div class="card">Remaining <br><span id="remaining">₹0</span></div>
+        <div class="card">Alerts <br><span id="alerts">✔ Safe</span></div>
+      </div>
+      
+      <div class="charts">
+        <div class="chart-box">
+          <canvas id="pieChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EXPENSE SECTION -->
+    <div id="expenses" class="section" style="display:none">
+      <h2>Add Expense</h2>
+
+      <input id="title" placeholder="Title">
+      <input id="amount" placeholder="Amount">
+
+      <button onclick="addExpense()">Add</button>
+
+      <div id="list"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="profile" class="section" style="display:none">
+      <h2>User Profile</h2>
+      <p>Email: <span id="emailDisplay"></span></p>
+      <p>Budget: ₹<span id="budgetDisplay"></span></p>
+    </div>
+
   </div>
 
-  <div class="card-small">
-    <h3>Remaining Budget</h3>
-    <p id="remaining">₹0</p>
-  </div>
-
-</div>
-
-<!-- ADD EXPENSE -->
-<div class="card">
-  <h3>Add Expense</h3>
-  <input id="title" placeholder="Title">
-  <input id="amount" placeholder="Amount">
-  <button onclick="addExpense()">Add</button>
-</div>
-
-<!-- CHARTS -->
-<div class="card">
-  <h3>Expense Distribution</h3>
-  <canvas id="pieChart"></canvas>
-</div>
-
-<div class="card">
-  <h3>Expense Trend</h3>
-  <canvas id="barChart"></canvas>
-</div>
-
-<!-- LIST -->
-<div class="card">
-  <h3>Your Expenses</h3>
-  <div id="list"></div>
-</div>
-
-<!-- ALERT -->
-<div class="card">
-  <h3>⚠ Alerts</h3>
-  <div id="alerts"></div>
 </div>
 
 <script src="script.js"></script>

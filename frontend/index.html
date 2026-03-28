@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>OptiBudget</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="center">
+<!-- 🌄 BACKGROUND SLIDER -->
+<div class="bg-slider">
+  <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f" class="active">
+  <img src="https://images.unsplash.com/photo-1565514020179-026b92b2d8e5">
+  <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e">
+</div>
+
+<!-- 💖 MAIN BOX -->
+<div class="center-box">
+
   <h1>💸 OptiBudget</h1>
   <p>Smart Budget Management in ₹</p>
 
-  <button onclick="goLogin()">Login</button>
-  <button onclick="goRegister()">Register</button>
+  <div class="btn-group">
+    <button onclick="goLogin()">Login</button>
+    <button onclick="goRegister()">Register</button>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
+
+<!-- 🌈 IMAGE SLIDER SCRIPT -->
+<script>
+let index = 0;
+const images = document.querySelectorAll(".bg-slider img");
+
+setInterval(() => {
+  images[index].classList.remove("active");
+  index = (index + 1) % images.length;
+  images[index].classList.add("active");
+}, 3000);
+</script>
+
 </body>
 </html>
