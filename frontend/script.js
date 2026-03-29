@@ -137,7 +137,7 @@ function loadExpenses(){
     document.getElementById("total").innerText = "₹" + total;
 
     // 🔥 Budget system
-    const budget = Number(localStorage.getItem("budget")) || 10000;
+    const budget = Number(localStorage.getItem("budget")) || 0;
 
     document.getElementById("remaining").innerText =
       "₹" + (budget - total);
@@ -159,7 +159,7 @@ function loadExpenses(){
     // 👤 Profile
     document.getElementById("emailDisplay").innerText =
       localStorage.getItem("email") || "Not logged";
-
+    loadProfile();
     document.getElementById("budgetDisplay").innerText =
       budget;
 
@@ -215,6 +215,10 @@ function showSection(sectionId){
   });
 
   document.getElementById(sectionId).style.display="block";
+
+  if(sectionId === "profile"){
+    loadProfile();
+  }
 }
 
 function checkPassword(){
@@ -233,4 +237,72 @@ function checkPassword(){
     strength.innerText = "Medium 🙂";
     strength.style.color = "orange";
   }
+}
+
+/* ================= UPDATE BUDGET ================= */
+function updateBudget(){
+  const newBudget = document.getElementById("newBudget").value;
+
+  if(!newBudget){
+    showToast("Enter budget first ❌");
+    return;
+  }
+
+  localStorage.setItem("budget", Number(newBudget));
+
+  showToast("Budget updated 💖");
+
+  // 🔥 reload dashboard data
+  loadExpenses();
+  loadProfile();
+}
+
+
+/* ================= LOAD PROFILE ================= */
+function loadProfile(){
+
+  const email = localStorage.getItem("email") || "Not set";
+  const name = localStorage.getItem("name") || "User";
+  const budget = Number(localStorage.getItem("budget")) || 0;
+
+  document.getElementById("emailDisplay").innerText = email;
+  document.getElementById("nameDisplay").innerText = name;
+
+  // 🔥 show current budget
+  document.getElementById("newBudget").value = budget;
+
+  // 🔥 calculate remaining
+  const totalText = document.getElementById("total").innerText || "₹0";
+  const total = Number(totalText.replace("₹","")) || 0;
+
+  document.getElementById("remainingProfile").innerText =
+    "₹" + (budget - total);
+}
+
+
+/* ================= RESET BUDGET ================= */
+function resetBudget(){
+  localStorage.setItem("budget", 0);
+
+  showToast("Budget reset 🔄");
+
+  loadExpenses();
+  loadProfile();
+}
+
+
+/* ================= RESET DATA ================= */
+function resetData(){
+  const userId = localStorage.getItem("userId");
+
+  fetch(`${BASE}/expenses/reset/${userId}`, {
+    method:"DELETE"
+  })
+  .then(()=>{
+    showToast("All expenses deleted ❌");
+
+    // 🔥 important: reload everything
+    loadExpenses();
+    loadProfile();
+  });
 }

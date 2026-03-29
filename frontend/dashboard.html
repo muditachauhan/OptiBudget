@@ -66,9 +66,44 @@
 
     <!-- PROFILE -->
     <div id="profile" class="section" style="display:none">
-      <h2>User Profile</h2>
-      <p>Email: <span id="emailDisplay"></span></p>
-      <p>Budget: ₹<span id="budgetDisplay"></span></p>
+
+      <div class="profile-card">
+
+        <h2>👤 My Profile</h2>
+
+          <div class="profile-item">
+            <label>Name:</label>
+            <span id="nameDisplay">User</span>
+          </div>
+
+          <div class="profile-item">
+            <label>Email:</label>
+            <span id="emailDisplay"></span>
+          </div>
+
+          <div class="profile-item">
+            <label>Total Budget:</label>
+            <input id="newBudget" placeholder="₹ Enter budget">
+            <button onclick="updateBudget()">Update</button>
+          </div>
+
+          <div class="profile-item">
+            <label>Remaining Budget:</label>
+            <span id="remainingProfile">₹0</span>
+          </div>
+
+          <div class="profile-actions">
+            <button onclick="resetBudget()" class="reset-btn">
+              🔄 Reset Budget
+            </button>
+
+            <button onclick="resetData()" class="danger-btn">
+              ❌ Reset All Data
+            </button>
+          </div>
+
+      </div>
+
     </div>
 
   </div>
