@@ -2,18 +2,45 @@
 <html>
 <head>
   <title>Profile</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="card">
-  <h2>User Profile</h2>
+<div class="auth-container">
 
-  <p id="userEmail"></p>
+  <div class="auth-box">
 
-  <button onclick="logout()">Logout</button>
+    <h1>👤 Your Profile</h1>
+
+    <p>Email: <span id="emailDisplay"></span></p>
+
+    <h3>💰 Update Budget</h3>
+    <input id="newBudget" placeholder="Enter new budget ₹">
+
+    <button onclick="updateBudget()">Update Budget</button>
+
+    <h3 style="margin-top:20px;">⚠ Reset Data</h3>
+
+    <button onclick="resetData()" style="background:#ff4b7d;">
+      Reset All Expenses ❌
+    </button>
+
+  </div>
+
 </div>
 
+<div id="toast"></div>
+
 <script src="script.js"></script>
+
+<script>
+  document.getElementById("emailDisplay").innerText =
+    localStorage.getItem("email");
+</script>
+
 </body>
 </html>

@@ -346,3 +346,51 @@ button:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 💖 PROFILE CARD */
+.profile-card {
+  background: rgba(255,255,255,0.8);
+  padding: 25px;
+  border-radius: 20px;
+  width: 60%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.profile-item input {
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+}
+
+.profile-item button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+  cursor: pointer;
+}
+
+.profile-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  color: black;
+}
+
+.danger-btn {
+  background: linear-gradient(135deg, #ff4b7d, #ff758c);
+  color: white;
+}
