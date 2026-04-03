@@ -1,9 +1,22 @@
 from flask import Flask, jsonify
+from model import predict_expense
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route("/predict")
+# 🧠 ML Prediction Route
+@app.route("/predict", methods=["GET"])
 def predict():
-    return jsonify({"prediction": 12000})
+    result = predict_expense()
+    return jsonify({
+        "predicted_expense": result
+    })
 
-app.run(port=8000)
+# 🧠 Health check
+@app.route("/")
+def home():
+    return "ML Service Running 🚀"
+
+if __name__ == "__main__":
+    app.run(port=8000, debug=True)

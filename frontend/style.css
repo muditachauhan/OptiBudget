@@ -1,4 +1,4 @@
-/* 🌸 GLOBAL */
+/*  GLOBAL */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -6,12 +6,12 @@ body {
   color: #333;
 }
 
-/* 🌈 LAYOUT */
+/*  LAYOUT */
 .container {
   display: flex;
 }
 
-/* 💖 SIDEBAR */
+/*  SIDEBAR */
 .sidebar {
   width: 230px;
   height: 100vh;
@@ -44,13 +44,13 @@ body {
   transform: translateX(5px);
 }
 
-/* 💎 MAIN */
+/*  MAIN */
 .main {
   flex: 1;
   padding: 25px;
 }
 
-/* ✨ TOPBAR */
+/*  TOPBAR */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -62,7 +62,7 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* 💕 CARDS */
+/*  CARDS */
 .cards {
   display: flex;
   gap: 20px;
@@ -84,7 +84,7 @@ body {
   transform: translateY(-5px) scale(1.03);
 }
 
-/* 🌸 DIFFERENT COLORS FOR CARDS */
+/*  DIFFERENT COLORS FOR CARDS */
 .card:nth-child(1){
   background: linear-gradient(135deg, #ff9a9e, #fecfef);
 }
@@ -97,7 +97,7 @@ body {
   background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
 }
 
-/* 📊 CHARTS */
+/*  CHARTS */
 .charts {
   margin-top: 30px;
   display: flex;
@@ -113,7 +113,7 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* 🧾 INPUTS */
+/*  INPUTS */
 input {
   padding: 12px;
   margin: 10px 0;
@@ -124,7 +124,7 @@ input {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* 🎀 BUTTON */
+/*  BUTTON */
 button {
   padding: 12px 20px;
   border: none;
@@ -139,7 +139,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* 📄 LIST */
+/*  LIST */
 #list p {
   background: rgba(255,255,255,0.5);
   padding: 10px;
@@ -152,7 +152,7 @@ button:hover {
   transform: translateX(5px);
 }
 
-/* 👤 PROFILE */
+/*  PROFILE */
 #profile {
   background: rgba(255,255,255,0.5);
   padding: 20px;
@@ -160,7 +160,7 @@ button:hover {
   backdrop-filter: blur(10px);
 }
 
-/* 🌄 BACKGROUND SLIDER */
+/*  BACKGROUND SLIDER */
 .bg-slider {
   position: fixed;
   width: 100%;
@@ -181,7 +181,7 @@ button:hover {
   opacity: 1;
 }
 
-/* 🌸 CENTER BOX */
+/*  CENTER BOX */
 .center-box {
   position: absolute;
   top: 50%;
@@ -209,7 +209,7 @@ button:hover {
   margin-bottom: 20px;
 }
 
-/* 💕 BUTTON GROUP */
+/*  BUTTON GROUP */
 .btn-group button {
   width: 100%;
   margin: 10px 0;
@@ -229,7 +229,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* 💖 AUTH PAGES */
+/*  AUTH PAGES */
 .auth-body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -242,14 +242,14 @@ button:hover {
   align-items: center;
 }
 
-/* 🌸 CONTAINER */
+/*  CONTAINER */
 .auth-container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* ✨ BOX */
+/*  BOX */
 .auth-box {
   width: 350px;
   padding: 40px;
@@ -265,7 +265,7 @@ button:hover {
   animation: fadeIn 1s ease;
 }
 
-/* 💕 TEXT */
+/*  TEXT */
 .auth-box h1 {
   margin-bottom: 10px;
 }
@@ -276,7 +276,7 @@ button:hover {
   color: #555;
 }
 
-/* 🧾 INPUT */
+/*  INPUT */
 .auth-box input {
   width: 100%;
   padding: 12px;
@@ -287,7 +287,7 @@ button:hover {
   outline: none;
 }
 
-/* 🎀 BUTTON */
+/*  BUTTON */
 .auth-box button {
   width: 100%;
   padding: 12px;
@@ -307,7 +307,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* 🔁 SWITCH TEXT */
+/*  SWITCH TEXT */
 .switch {
   margin-top: 15px;
   font-size: 14px;
@@ -319,13 +319,13 @@ button:hover {
   font-weight: bold;
 }
 
-/* ✨ ANIMATION */
+/*  ANIMATION */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px);}
   to { opacity: 1; transform: translateY(0);}
 }
 
-/* 🍭 TOAST */
+/*  TOAST */
 #toast {
   position: fixed;
   bottom: 20px;
@@ -347,7 +347,7 @@ button:hover {
   transform: translateY(0);
 }
 
-/* 💖 PROFILE CARD */
+/*  PROFILE CARD */
 .profile-card {
   background: rgba(255,255,255,0.8);
   padding: 25px;
