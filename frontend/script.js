@@ -136,13 +136,11 @@ function loadExpenses(){
 
     document.getElementById("total").innerText = "₹" + total;
 
-    // 🔥 Budget system
     const budget = Number(localStorage.getItem("budget")) || 0;
 
     document.getElementById("remaining").innerText =
       "₹" + (budget - total);
 
-    // 🔔 Alerts
     if(total > budget){
       document.getElementById("alerts").innerText =
         "⚠ Budget exceeded!";
@@ -151,17 +149,19 @@ function loadExpenses(){
         "✔ Safe";
     }
 
-    // 📊 Charts only if data exists
     if(data.length > 0){
       renderCharts(data);
     }
 
-    // 👤 Profile
     document.getElementById("emailDisplay").innerText =
       localStorage.getItem("email") || "Not logged";
+
     loadProfile();
-    document.getElementById("budgetDisplay").innerText =
-      budget;
+
+    // 🔥 FIXED ML CALL
+    setTimeout(() => {
+      loadPrediction();
+    }, 300);
 
   })
   .catch(err=>{
@@ -305,4 +305,27 @@ function resetData(){
     loadExpenses();
     loadProfile();
   });
+}
+
+function loadPrediction(){
+  setTimeout(() => {
+
+    fetch("http://localhost:8000/predict")
+    .then(res=>res.json())
+    .then(data=>{
+      console.log("ML DATA:", data);
+
+      const el = document.getElementById("prediction");
+
+      if(el){
+        el.innerText = "₹" + data.predicted_expense;
+      } else {
+        console.log("Prediction element not found ❌");
+      }
+    })
+    .catch(err=>{
+      console.log("ML ERROR:", err);
+    });
+
+  }, 500); // 🔥 delay
 }
