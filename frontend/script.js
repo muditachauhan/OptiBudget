@@ -128,7 +128,28 @@ function loadExpenses(){
 
     data.forEach(e=>{
       total += Number(e.amount);
-      html += `<p>💸 ${e.title} - ₹${e.amount}</p>`;
+      const d = e.date ? new Date(e.date) : new Date();
+
+      const formattedDate = d.toLocaleDateString("en-IN");
+      const formattedTime = d.toLocaleTimeString("en-IN", {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      // Today logic
+      const today = new Date();
+      let label = formattedDate;
+
+      if(today.toDateString() === d.toDateString()){
+        label = "Today";
+      }
+
+      html += `
+        <div class="expense-card">
+          <p>💸 ${e.title} - ₹${e.amount}</p>
+          <small>📅 ${label} | 🕒 ${formattedTime}</small>
+        </div>
+      `;
     });
 
     document.getElementById("list").innerHTML =
@@ -171,13 +192,20 @@ function loadExpenses(){
 
 /* ================= CHARTS ================= */
 function renderCharts(data){
+
   const titles = data.map(e=>e.title);
   const amounts = data.map(e=>Number(e.amount));
 
-  // Clear previous charts (important fix)
-  document.getElementById("pieChart").innerHTML = "";
-  document.getElementById("barChart").innerHTML = "";
+  // 🔥 MONTHLY LOGIC
+  const monthly = Array(12).fill(0);
 
+  data.forEach(e=>{
+    const d = e.date ? new Date(e.date) : new Date();
+    const month = d.getMonth();
+    monthly[month] += Number(e.amount);
+  });
+
+  // 🔵 PIE CHART
   new Chart(document.getElementById("pieChart"), {
     type:"pie",
     data:{
@@ -191,6 +219,7 @@ function renderCharts(data){
     }
   });
 
+  // 🔵 BAR CHART
   new Chart(document.getElementById("barChart"), {
     type:"bar",
     data:{
@@ -201,6 +230,22 @@ function renderCharts(data){
       }]
     }
   });
+
+  // 🔥 NEW LINE CHART (MONTHLY)
+  new Chart(document.getElementById("lineChart"), {
+    type:"line",
+    data:{
+      labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      datasets:[{
+        label:"Monthly Expenses ₹",
+        data:monthly,
+        borderColor:"#ff758c",
+        backgroundColor:"rgba(255,117,140,0.2)",
+        fill:true
+      }]
+    }
+  });
+
 }
 
 /* ================= AUTO LOAD ================= */
