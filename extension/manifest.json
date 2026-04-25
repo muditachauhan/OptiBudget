@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "OptiBudget Tracker",
+  "version": "1.0",
+
+  "permissions": ["activeTab", "scripting"],
+
+  "host_permissions": ["https://*/*"],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

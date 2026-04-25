@@ -34,6 +34,11 @@ function login(){
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.userId);
       localStorage.setItem("email", data.email);
+      if(typeof chrome !== "undefined" && chrome.storage){
+        chrome.storage.local.set({
+          token: data.token
+        });
+      }
       localStorage.setItem("budget", data.budget || 10000);
 
       setTimeout(()=>{
