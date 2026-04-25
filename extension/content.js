@@ -41,13 +41,12 @@ setTimeout(() => {
 // 🔥 FUNCTION TO SEND DATA
 function sendToBackend(price){
 
-  // 🔥 get token from extension storage
-  chrome.storage.local.get("token", (data)=>{
+  chrome.storage.local.get(["token"], function(result) {
 
-    const token = data.token;
+    const token = result.token;
 
     if(!token){
-      alert("❌ Please login first in OptiBudget");
+      alert("❌ Please login first");
       return;
     }
 
@@ -55,7 +54,7 @@ function sendToBackend(price){
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token   // 🔥 important
+        "Authorization": token
       },
       body: JSON.stringify({
         title: "Online Shopping",
@@ -66,12 +65,32 @@ function sendToBackend(price){
     .then(res => res.json())
     .then(data => {
       alert("✅ Added to OptiBudget!");
-      console.log("Saved:", data);
-    })
-    .catch(err => {
-      console.log("ERROR:", err);
     });
+  });
 
+  if(!token){
+    alert("❌ Please login first");
+    return;
+  }
+
+  fetch("http://localhost:5000/api/expenses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": token
+    },
+    body: JSON.stringify({
+      title: "Online Shopping",
+      amount: Number(price),
+      category: "Shopping"
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("✅ Added to OptiBudget!");
+  })
+  .catch(err => {
+    console.log("ERROR:", err);
   });
 
 }

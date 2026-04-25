@@ -1,12 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
+const verifyToken = require("../middleware/auth"); // 🔥 ADD THIS
+
 const { addExpense, getExpenses } = require("../controllers/expenseController");
 
-router.post("/", addExpense);
+// 🔥 ONLY CHANGE HERE
+router.post("/", verifyToken, addExpense);
+
 router.get("/:userId", getExpenses);
 
-// 🔥 ADD HERE
+// 🔥 RESET (unchanged)
 router.delete("/reset/:userId", (req, res) => {
   const { userId } = req.params;
 

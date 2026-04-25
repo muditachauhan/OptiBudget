@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const verifyToken = require("../middleware/auth");
-const { addExpense } = require("../controllers/expenseController");
+const { register, login } = require("../controllers/authController");
 
-router.post("/", verifyToken, addExpense);
+// ❌ यहाँ verifyToken नहीं लगेगा
+
+router.post("/register", register);
+router.post("/login", login);
 
 module.exports = router;
