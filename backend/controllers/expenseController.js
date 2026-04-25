@@ -1,7 +1,8 @@
 const db = require("../database/db");
 
 exports.addExpense = (req, res) => {
-  const { userId, title, amount, category } = req.body;
+  const userId = req.userId;
+  const { title, amount, category } = req.body;
 
   db.run(
     "INSERT INTO expenses (userId, title, amount, category, date) VALUES  (?, ?, ?, ?, ?)",
