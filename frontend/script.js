@@ -89,6 +89,7 @@ function logout(){
 /* ================= ADD EXPENSE ================= */
 function addExpense(){
   const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
   if(!userId){
     alert("Please login first");
@@ -97,7 +98,10 @@ function addExpense(){
 
   fetch(`${BASE}/expenses`, {
     method:"POST",
-    headers:{"Content-Type":"application/json"},
+    headers:{
+      "Content-Type":"application/json",
+      "authorization": token
+    },
     body:JSON.stringify({
       userId,
       title: document.getElementById("title").value,
