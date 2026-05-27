@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register - OptiBudget</title>
 
   <link rel="stylesheet" href="style.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="auth-body">
@@ -19,10 +19,10 @@
     <p class="subtitle">Start your budgeting journey today 💖</p>
 
     <input id="name" placeholder="👤 Your Name">
-    <input id="email" placeholder="📧 Email">
+    <input id="email" placeholder="📧 Email Address">
     <input id="password" type="password" placeholder="🔐 Password" onkeyup="checkPassword()">
-    <p id="strength"></p>
-    <input id="budget" placeholder="💰 Monthly Budget ₹">
+    <div id="strength" class="strength-indicator"></div>
+    <input id="budget" type="number" placeholder="💰 Monthly Budget ₹">
 
     <button onclick="register()">Register 🎉</button>
 
