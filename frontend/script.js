@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000/api";
+const BASE = "https://optibudget.onrender.com/api";
 
 function showToast(message){
   const toast = document.getElementById("toast");
