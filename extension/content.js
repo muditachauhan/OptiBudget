@@ -50,7 +50,7 @@ function sendToBackend(price){
       return;
     }
 
-    fetch("http://localhost:5000/api/expenses", {
+    fetch("https://optibudget.onrender.com/api/expenses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function sendToBackend(price){
     return;
   }
 
-  fetch("http://localhost:5000/api/expenses", {
+  fetch("https://optibudget.onrender.com/api/expenses", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
